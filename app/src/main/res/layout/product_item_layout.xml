@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.app.goustotask.data.model.ProductsDomainModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_1x"
+        android:paddingTop="@dimen/padding_1x"
+        android:paddingEnd="@dimen/padding_1x">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_0x"
+            android:background="?android:selectableItemBackground"
+            app:cardCornerRadius="@dimen/radius_1x"
+            app:cardElevation="@dimen/margin_0x"
+            app:contentPadding="@dimen/padding_1x">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/imgEndGuideLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.4" />
+
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:cropToPadding="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    app:loadImage="@{data.imageUrl}"
+                    app:layout_constraintEnd_toStartOf="@id/imgEndGuideLine"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    style="@style/ProductTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="5"
+                    android:text="@{data.title}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imgEndGuideLine"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tvPrice"
+                    tools:text="Love Shortie All Butter Shortbread." />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    style="@style/ProductTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imgEndGuideLine"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                    app:setPrice="@{data.price}"
+                    tools:text="Price" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
+
+</layout>
+
+
